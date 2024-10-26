@@ -1,5 +1,4 @@
 const User = require("../models/user.model")
-const { v4: uuidv4 } = require("uuid")
 const { setUser } = require("../services/auth")
 async function signUp(req, res) {
     try {
@@ -24,9 +23,8 @@ async function signIn(req, res) {
             return res.status(400).send("Incorrect password")
         }
 
-        const sessionId = uuidv4()
-        setUser(sessionId, user)
-        res.cookie("sessionId", sessionId)
+        const token = setUser(user)
+        res.cookie("sessionId", token)
         return res.redirect("/")
     } catch (err) {
         console.log(err)
