@@ -15,7 +15,8 @@ async function generateShortUrl(req, res) {
     const url = await urlModel.create({
         shortUrl: nanoId,
         redirectUrl: body.url,
-        visitHistory: []
+        visitHistory: [],
+        createdBy: req.user._id
     })
 
     return res.render("home", { id: nanoId })
