@@ -24,8 +24,9 @@ async function signIn(req, res) {
         }
 
         const token = setUser(user)
-        res.cookie("sessionId", token)
+        res.cookie("token", token)
         return res.redirect("/")
+        // return res.json({ token })
     } catch (err) {
         console.log(err)
         res.status(500).send("Internal Server Error")

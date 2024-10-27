@@ -134,6 +134,10 @@
           <th>Short URL</th>
           <th>Original URL</th>
           <th>Total Clicks</th>
+          <!-- if admin then also show the name -->
+          <% if (locals.isAdmin) { %>
+          <th>Created By</th>
+          <% } %>
         </tr>
       </thead>
       <tbody>
@@ -142,6 +146,10 @@
           <td><a href="/url/<%= url.shortUrl %>"><%= url.shortUrl %></a></td>
           <td><%= url.redirectUrl %></td>
           <td><%= url.visitHistory.length %></td>
+          <!-- if admin then also show the name -->
+          <% if (locals.isAdmin) { %>
+          <td><%= url.createdBy.name %></td>
+          <% } %>
         </tr>
         <% } %>
       </tbody>
